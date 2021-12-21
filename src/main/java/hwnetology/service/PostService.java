@@ -3,10 +3,12 @@ package hwnetology.service;
 import hwnetology.exceptions.NotFoundException;
 import hwnetology.model.Post;
 import hwnetology.repository.PostRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 // Класс, реализующий бизнес логику нашего приложения
+@Service
 public class PostService {
 
     private final PostRepository repository;

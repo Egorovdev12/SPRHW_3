@@ -2,8 +2,8 @@ package hwnetology.servlet;
 
 import hwnetology.controller.PostController;
 import hwnetology.model.Post;
-import hwnetology.repository.PostRepository;
 import hwnetology.service.PostService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MainServlet extends HttpServlet {
 
-    private PostController controller;
+    final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("hwnetology");
+    final PostController controller = context.getBean(PostController.class);
+    final Post testPost = context.getBean(PostService.class).save(new Post(0, "Shock, it is working!"));
 
-    // Инициализация начальных данных
-    @Override
-    public void init() {
-        final PostRepository repository = new PostRepository();
-        final PostService service = new PostService(repository);
-        this.controller = new PostController(service);
-        service.save(new Post(0, "Shock, it is working!"));
-    }
 
     // Метод, выполняющийся при каждом запросе
     public void service(HttpServletRequest request, HttpServletResponse response) {
