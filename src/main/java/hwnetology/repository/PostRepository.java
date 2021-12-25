@@ -2,6 +2,7 @@ package hwnetology.repository;
 
 import hwnetology.exceptions.NotFoundException;
 import hwnetology.model.Post;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
 // Хранилище наших данных
+@Repository
 public class PostRepository {
 
     private List<Post> postList;

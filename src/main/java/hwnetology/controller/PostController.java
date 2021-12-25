@@ -3,12 +3,14 @@ package hwnetology.controller;
 import com.google.gson.Gson;
 import hwnetology.model.Post;
 import hwnetology.service.PostService;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
 
 // данный класс занимается подготовкой данных/работает с json
+@Controller
 public class PostController {
 
     public static final String APPLICATION_JSON = "application/json";
