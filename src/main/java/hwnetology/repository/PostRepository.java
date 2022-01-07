@@ -22,6 +22,10 @@ public class PostRepository {
         idGenerator = new AtomicLong(0);
     }
 
+    public boolean containsKey(Long key) {
+        return postList.containsKey(key);
+    }
+
     public List<Post> all() {
         return postList.values().stream().toList();
     }
@@ -40,14 +44,13 @@ public class PostRepository {
 
         // если id !=0, то изменяем имеющийся пост
         if (post.getId() != 0) {
-            if (!postList.get(post.getId()).equals(null)) {
+            if (containsKey(post.getId())) {
                 postList.put(post.getId(), post);
             }
             else {
                 throw new NotFoundException("There is no post with id = " + post.getId());
             }
         }
-
         return freshPost;
     }
 

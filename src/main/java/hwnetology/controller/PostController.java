@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
 
-// данный класс занимается подготовкой данных/работает с json
 @Controller
 public class PostController {
 
@@ -44,7 +43,7 @@ public class PostController {
         response.getWriter().print("An attempt was made to DELETE a post with id = " + id);
     }
 
-    public void save(Reader body, HttpServletResponse response) throws IOException{
+    public void save(Reader body, HttpServletResponse response) throws IOException {
         response.setContentType(APPLICATION_JSON);
         final Gson gson = new Gson();
         final Post post = gson.fromJson(body, Post.class);

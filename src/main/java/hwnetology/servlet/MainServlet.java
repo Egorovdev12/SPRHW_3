@@ -1,6 +1,7 @@
 package hwnetology.servlet;
 
 import hwnetology.controller.PostController;
+import hwnetology.exceptions.NotFoundException;
 import hwnetology.model.Post;
 import hwnetology.service.PostService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class MainServlet extends HttpServlet {
 
@@ -50,9 +52,14 @@ public class MainServlet extends HttpServlet {
             // Если совпадений не найдено, то выбрасываем ошибку
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
-        catch (Exception exception) {
-            exception.printStackTrace();
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        catch (NotFoundException exceptionNF) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+        catch (IOException exceptionIO) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+        catch (NullPointerException exceptionNP) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 
