@@ -22,7 +22,7 @@ public class PostRepository {
         idGenerator = new AtomicLong(0);
     }
 
-    public boolean containsKey(Long key) {
+    private boolean containsKey(Long key) {
         return postList.containsKey(key);
     }
 
@@ -31,7 +31,7 @@ public class PostRepository {
     }
 
     public Optional<Post> getById(long id) {
-        return Optional.of(postList.get(id));
+        return Optional.ofNullable(postList.get(id));
     }
 
     public Post save(Post post) {

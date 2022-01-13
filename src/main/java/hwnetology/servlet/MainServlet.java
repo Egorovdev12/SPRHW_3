@@ -9,7 +9,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class MainServlet extends HttpServlet {
 
@@ -55,11 +54,8 @@ public class MainServlet extends HttpServlet {
         catch (NotFoundException exceptionNF) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
-        catch (IOException exceptionIO) {
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-        }
-        catch (NullPointerException exceptionNP) {
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        catch (Exception exceptionIO) {
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 
